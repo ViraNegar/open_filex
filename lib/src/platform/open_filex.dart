@@ -12,7 +12,9 @@ class OpenFilex {
   OpenFilex._();
 
   ///linuxDesktopName like 'xdg'/'gnome'
-  static Future<OpenResult> open(String filePath,
+  static Future<OpenResult> open(
+    String filePath,
+    String params,
       {String? type, String? uti, String linuxDesktopName = "xdg"}) async {
     if (!Platform.isIOS && !Platform.isAndroid) {
       int result = -1;
@@ -39,6 +41,7 @@ class OpenFilex {
 
     Map<String, String?> map = {
       "file_path": filePath,
+      "params": params,
       "type": type,
       "uti": uti,
     };

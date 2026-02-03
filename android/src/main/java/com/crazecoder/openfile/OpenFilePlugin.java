@@ -51,6 +51,7 @@ public class OpenFilePlugin implements MethodCallHandler
     private MethodChannel channel;
     private Result result;
     private String filePath;
+    private String params;
     private String typeString;
     private boolean isResultSubmitted = false;
 
@@ -122,6 +123,7 @@ public class OpenFilePlugin implements MethodCallHandler
         if (call.method.equals("open_file")) {
             this.result = result;
             filePath = call.argument("file_path");
+	    params = call.argument("params");
             if (call.hasArgument("type") && call.argument("type") != null) {
                 typeString = call.argument("type");
             } else {
@@ -220,7 +222,7 @@ public class OpenFilePlugin implements MethodCallHandler
         if(!isFileAvailable()){
             return;
         }
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intent intent = new Intent("com.vnegar.OPEN_BOOK");
         if (TYPE_STRING_APK.equals(typeString))
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         else
@@ -234,6 +236,7 @@ public class OpenFilePlugin implements MethodCallHandler
         } else {
             intent.setDataAndType(Uri.fromFile(new File(filePath)), typeString);
         }
+	intent.putExtra("params", params);
         int type = 0;
         String message = "done";
         try {
