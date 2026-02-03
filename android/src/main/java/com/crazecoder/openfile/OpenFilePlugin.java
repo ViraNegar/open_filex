@@ -236,7 +236,8 @@ public class OpenFilePlugin implements MethodCallHandler
         } else {
             intent.setDataAndType(Uri.fromFile(new File(filePath)), typeString);
         }
-	intent.putExtra("params", params);
+	    intent.putExtra("params", params);
+	    intent.setPackage("com.vnegar.digimazeodfreader");
         int type = 0;
         String message = "done";
         try {
