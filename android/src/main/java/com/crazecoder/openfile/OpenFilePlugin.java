@@ -157,7 +157,7 @@ public class OpenFilePlugin implements MethodCallHandler
             filePath = call.argument("file_path");
             String packageName = context.getPackageName();
             Uri uri = FileProvider.getUriForFile(context, packageName + ".fileProvider.com.crazecoder.openfile", new File(filePath));
-            return uri.toString();
+            result(0, uri.toString());
         }
         else {
             result.notImplemented();
