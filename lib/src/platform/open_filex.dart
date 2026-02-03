@@ -50,7 +50,7 @@ class OpenFilex {
     return OpenResult.fromJson(resultMap);
   }
 
-  static Future<OpenResult> getFileContentUri(String filePath) async {
+  static Future<String> getFileContentUri(String filePath) async {
       Map<String, String?> map = {"file_path": filePath};
       return await _channel.invokeMethod('get_file_content_uri', map);
   }
